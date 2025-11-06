@@ -10,7 +10,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
 
     urdf = FileContent(
-        PathJoinSubstitution([FindPackageShare('urdf_tutorial_cpp'), 'urdf', 'r2d2.urdf.xml']))
+        PathJoinSubstitution([FindPackageShare('ieee_rover'), 'urdf', 'r2d2.urdf.xml']))
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -25,8 +25,8 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time, 'robot_description': urdf}],
             arguments=[urdf]),
         Node(
-            package='urdf_tutorial_cpp',
-            executable='urdf_tutorial_cpp',
-            name='urdf_tutorial_cpp',
+            package='ieee_rover',
+            executable='ieee_rover',
+            name='ieee_rover',
             output='screen'),
     ])
