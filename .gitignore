@@ -1,0 +1,55 @@
+# Ignore build outputs, install and logs created by colcon/ament
+**/build/
+**/install/
+**/log/
+
+# Common CMake artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Python artifacts (packages, caches, virtualenvs)
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+.eggs/
+pip-wheel-metadata/
+.pytest_cache/
+.coverage
+htmlcov/
+venv/
+.env/
+.venv/
+env/
+*.venv/
+
+# Common editor/IDE files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Misc runtime / generated artifacts
+*.log
+*.bag
+*.bag.active
+*.db3
+
+# Legacy/ROS1 leftovers
+devel/
+build_isolated/
+install_isolated/
+
+# Ignore all packages/files inside the src/ directory by default
+src/*
+
+# Re-include only the specific packages we want to track    
+!src/ieee_rover
+
+# Don't ignore .gitignore files within src
+!src/.gitignore
