@@ -1,8 +1,7 @@
-# ROS2 / colcon workspace
 # Ignore build outputs, install and logs created by colcon/ament
 **/build/
-install/
-log/
+**/install/
+**/log/
 
 # Common CMake artifacts
 CMakeFiles/
@@ -41,7 +40,16 @@ env/
 *.bag.active
 *.db3
 
-# Legacy/ROS1 leftovers (if present)
+# Legacy/ROS1 leftovers
 devel/
 build_isolated/
 install_isolated/
+
+# Ignore all packages/files inside the src/ directory by default
+src/*
+
+# Re-include only the specific packages we want to track    
+!src/ieee_rover
+
+# Don't ignore .gitignore files within src
+!src/.gitignore
