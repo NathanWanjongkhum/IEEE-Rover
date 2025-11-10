@@ -163,7 +163,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('ros_gz_sim'),
                     'launch',
-                    'gz_sim.launch.py'
+                    'gz_sim_launch.py'
                 )]), 
                 launch_arguments=
                 {'gz_args': f'-r -v 4 {world_file_path}',
