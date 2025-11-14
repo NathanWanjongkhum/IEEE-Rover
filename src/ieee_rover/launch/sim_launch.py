@@ -126,27 +126,30 @@ def generate_launch_description():
         arguments=[
             
             # General
-            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+            '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock]',
 
             # Gazebo_Control
-            '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
-            '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry',
-            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
-            '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V', 
+            '/cmd_vel@geometry_msgs/msg/Twist[gz.msgs.Twist]',
+            '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry]',
+            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model]',
+            '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V]',
+
+            # Static TFs
+            '/tf_static@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V]',
 
             # Lidar 
-            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            '/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan]',
+            '/scan/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked]',
 
             # Camera
             # '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
             # '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
 
             # RGBD Camera
-            '/camera/depth/image_raw/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
-            '/camera/depth/image_raw/depth_image@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camera/depth/image_raw/image@sensor_msgs/msg/Image[gz.msgs.Image',
-            '/camera/depth/image_raw/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+            '/camera/depth/image_raw/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo]',
+            '/camera/depth/image_raw/depth_image@sensor_msgs/msg/Image[gz.msgs.Image]',
+            '/camera/depth/image_raw/image@sensor_msgs/msg/Image[gz.msgs.Image]',
+            '/camera/depth/image_raw/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked]',
         ],
         output='screen'
     )
@@ -187,7 +190,7 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         arguments=['-d', rviz_config_file],
-        parameters=[{'use_sim_time': True}],
+        parameters=[{'use_sim_time': use_sim_time}],
         output='both'
     )
 
@@ -196,6 +199,7 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=["joint_state_broadcaster"],
+        parameters=[{'use_sim_time': use_sim_time}],
     )
     
     diff_drive_controller_spawner = Node(
@@ -205,6 +209,7 @@ def generate_launch_description():
                    "--param-file", 
                    robot_controllers_file
         ],
+        parameters=[{'use_sim_time': use_sim_time}],
     )
 
     node_twist_mux = Node(
@@ -277,4 +282,3 @@ def generate_launch_description():
     # Generate the launch description  
     return ld
 
-    

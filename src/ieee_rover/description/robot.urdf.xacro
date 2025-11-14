@@ -13,9 +13,14 @@
         <xacro:include filename="gazebo_control.xacro" />
     </xacro:unless>
     <xacro:include filename="lidar.xacro" />
-    <xacro:include filename="camera.xacro" />
-    <!-- <xacro:include filename="depth_camera.xacro" /> -->
+    <!-- <xacro:include filename="camera.xacro" /> -->
+    <xacro:include filename="depth_camera.xacro" />
 
     <xacro:include filename="face.xacro" />
     
+    <plugin
+        filename="gz-sim-sensors-system"
+        name="gz::sim::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+    </plugin>
 </robot>

@@ -3,6 +3,10 @@
 **/install/
 **/log/
 
+# Testing artifacts
+*.gv
+*.pdf
+
 # Common CMake artifacts
 CMakeFiles/
 CMakeCache.txt
